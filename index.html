@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md. Abir Mahmud — Textile Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1F3A;
+    --navy-mid: #132945;
+    --gold: #E8A030;
+    --gold-light: #F5C06A;
+    --cream: #F5F0E8;
+    --cream-dark: #EAE3D6;
+    --text: #0B1F3A;
+    --text-muted: #5A6A80;
+    --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --section-gap: 100px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    background: rgba(11,31,58,0.96);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,48,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 40%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,48,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.35s forwards;
+  }
+  .hero-name span { color: var(--gold); }
+  .hero-tagline {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.5s forwards;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 36px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.5s forwards;
+  }
+  .hero-card-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .quick-stat {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+  }
+  .quick-stat:last-child { margin-bottom: 0; }
+  .quick-stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .quick-stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+  .stat-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 18px 0;
+  }
+
+  /* SECTIONS */
+  section { padding: var(--section-gap) 60px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--navy);
+    margin-bottom: 48px;
+    line-height: 1.15;
+  }
+
+  /* ABOUT */
+  .about-section { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-text {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .about-text p { margin-bottom: 16px; }
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .highlight-card {
+    background: var(--white);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    box-shadow: 0 2px 12px rgba(11,31,58,0.06);
+  }
+  .highlight-card strong {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .highlight-card span {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* EDUCATION */
+  .education-section { background: var(--navy); }
+  .education-section .section-title { color: var(--white); }
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: rgba(232,160,48,0.3);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 36px;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--navy);
+  }
+  .timeline-year {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .timeline-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .timeline-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+  }
+  .timeline-badge {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(232,160,48,0.15);
+    color: var(--gold);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  .experience-section { background: var(--cream-dark); }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .exp-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(11,31,58,0.08);
+    border-top: 3px solid var(--gold);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .exp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(11,31,58,0.14);
+  }
+  .exp-year {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .exp-org {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 14px;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  /* ACHIEVEMENTS */
+  .achievements-section { background: var(--navy); }
+  .achievements-section .section-title { color: var(--white); }
+  .ach-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ach-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 20px 24px;
+    transition: background 0.2s;
+  }
+  .ach-item:hover { background: rgba(255,255,255,0.08); }
+  .ach-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: rgba(232,160,48,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .ach-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+  .ach-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* SKILLS */
+  .skills-section { background: var(--cream); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .skill-group {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 16px rgba(11,31,58,0.06);
+  }
+  .skill-group-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cream-dark);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-tag {
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 400;
+    border: 1px solid var(--cream-dark);
+  }
+  .skill-tag.lang {
+    background: rgba(232,160,48,0.1);
+    border-color: rgba(232,160,48,0.3);
+    color: #7A4E0A;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--navy);
+    text-align: center;
+  }
+  .contact-section .section-title { color: var(--white); }
+  .contact-section .section-label { display: block; }
+  .contact-tagline {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    max-width: 500px;
+    margin: -28px auto 40px;
+    line-height: 1.7;
+  }
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    padding: 14px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(232,160,48,0.12);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .contact-link svg { width: 18px; height: 18px; }
+
+  footer {
+    background: #060F1C;
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Abir.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Textile Engineering · BUTEX</p>
+      <h1 class="hero-name">Md. Abir<br><span>Mahmud</span></h1>
+      <p class="hero-tagline">Undergraduate student at Bangladesh University of Textiles, passionate about driving innovation in manufacturing processes and improving efficiency in the textile industry.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn-outline">View Experience</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p class="hero-card-label">Quick Profile</p>
+      <div class="quick-stat">
+        <span class="quick-stat-value">BUTEX</span>
+        <span class="quick-stat-label">BSc. in Textile Engineering</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="quick-stat">
+        <span class="quick-stat-value">4th Year Student</span>
+        <span class="quick-stat-label">Dept. of Apparel Engineering</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="quick-stat">
+        <span class="quick-stat-value">Textile Enthusiast</span>
+        <span class="quick-stat-label">Eager to contribute to BD Textile Industry</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <p class="section-label reveal">About Me</p>
+    <h2 class="section-title reveal">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am a dedicated 4th year Textile Engineering student at BUTEX, studying in the Department of Apparel Engineering. With a strong passion for the textile industry, I am focused on understanding both the technical and creative dimensions of textile manufacturing.</p>
+        <p>My primary interests lie in driving innovation in manufacturing processes and improving overall efficiency and productivity — turning knowledge into practical, real-world impact.</p>
+        <p>Beyond academics, I have hands-on experience in graphics design, content creation, and team management through my active involvement in university clubs and part-time professional work.</p>
+      </div>
+      <div class="about-highlights reveal">
+        <div class="highlight-card">
+          <strong>Apparel Engineering</strong>
+          <span>Specialising in manufacturing processes, efficiency, and textile innovation</span>
+        </div>
+        <div class="highlight-card">
+          <strong>Graphics Design & IT</strong>
+          <span>Experienced in designing social media content and visual assets for organisations</span>
+        </div>
+        <div class="highlight-card">
+          <strong>Content Writing</strong>
+          <span>Admission chemistry book contributor at The Royal Scientific Publication LTD</span>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education-section" id="education">
+  <div class="section-inner">
+    <p class="section-label reveal">Academic Background</p>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <p class="timeline-year">2023 – Present</p>
+        <p class="timeline-title">B.Sc. in Textile Engineering</p>
+        <p class="timeline-sub">Bangladesh University of Textiles (BUTEX) · Department of Apparel Engineering</p>
+        <span class="timeline-badge">4th Year</span>
+      </div>
+      <div class="timeline-item reveal">
+        <p class="timeline-year">2019 – 2021</p>
+        <p class="timeline-title">Higher Secondary Certificate (HSC)</p>
+        <p class="timeline-sub">St. Joseph Higher Secondary School, Dhaka · Science Group</p>
+        <span class="timeline-badge">GPA 5.00</span>
+      </div>
+      <div class="timeline-item reveal">
+        <p class="timeline-year">2017 – 2019</p>
+        <p class="timeline-title">Secondary School Certificate (SSC)</p>
+        <p class="timeline-sub">Tejgaon Government High School, Dhaka · Science Group</p>
+        <span class="timeline-badge">GPA 5.00</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="section-inner">
+    <p class="section-label reveal">Work & Involvement</p>
+    <h2 class="section-title reveal">Experience</h2>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <p class="exp-year">2024 – Present</p>
+        <p class="exp-role">Admission Book Writer</p>
+        <p class="exp-org">The Royal Scientific Publication LTD · Part-time</p>
+        <ul class="exp-bullets">
+          <li>Solved university admission chemistry questions for preparation books</li>
+          <li>Worked under pressure to consistently meet publishing deadlines</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <p class="exp-year">2025</p>
+        <p class="exp-role">Manager of IT & Graphics</p>
+        <p class="exp-org">BUTEX Career Club</p>
+        <ul class="exp-bullets">
+          <li>Designed social media posters for the club's Facebook page</li>
+          <li>Organised club programs and led teamwork initiatives</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <p class="exp-year">2024</p>
+        <p class="exp-role">Executive of IT & Graphics</p>
+        <p class="exp-org">HULT Prize at BUTEX</p>
+        <ul class="exp-bullets">
+          <li>Designed posters and graphical assets for the chapter</li>
+          <li>Developed leadership and management skills through club work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements-section" id="achievements">
+  <div class="section-inner">
+    <p class="section-label reveal">Recognition & ECA</p>
+    <h2 class="section-title reveal">Achievements</h2>
+    <div class="ach-list">
+      <div class="ach-item reveal">
+        <div class="ach-icon">🏆</div>
+        <p class="ach-text"><strong>Dhaka Division Finalist</strong> — imaGen Ventures Youth Challenge 2023, organised by Jaago Foundation in collaboration with UNICEF</p>
+      </div>
+      <div class="ach-item reveal">
+        <div class="ach-icon">🌍</div>
+        <p class="ach-text"><strong>Semi-finalist</strong> — HULT Prize at BUTEX, 2023 & 2024 (consecutive years)</p>
+      </div>
+      <div class="ach-item reveal">
+        <div class="ach-icon">📋</div>
+        <p class="ach-text"><strong>Participant</strong> — Textile Poster Presentation at TEXVERSE, organised by the BUTEX Science Club</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">What I Bring</p>
+    <h2 class="section-title reveal">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Microsoft Office</p>
+        <div class="skill-tags">
+          <span class="skill-tag">MS PowerPoint</span>
+          <span class="skill-tag">MS Excel</span>
+          <span class="skill-tag">MS Word</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Creative & Digital</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Graphics Design</span>
+          <span class="skill-tag">Basic Video Editing</span>
+          <span class="skill-tag">AI Prompting</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Languages</p>
+        <div class="skill-tags">
+          <span class="skill-tag lang">Bangla</span>
+          <span class="skill-tag lang">English</span>
+          <span class="skill-tag lang">Hindi</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-title">Interests</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Textile Innovation</span>
+          <span class="skill-tag">Manufacturing Efficiency</span>
+          <span class="skill-tag">Research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <span class="section-label reveal">Let's Connect</span>
+    <h2 class="section-title reveal">Get in Touch</h2>
+    <p class="contact-tagline reveal">Open to internships, collaborations, and opportunities in the textile industry.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:mdabirmahmud39@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        mdabirmahmud39@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/abir365" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+      <a href="tel:+8801303459737" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +880 1303 459737
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Md. Abir Mahmud · Dhaka, Bangladesh</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
